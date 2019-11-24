@@ -12,8 +12,6 @@ git config --global user.name "$GITHUB_USER"
 #export TELEGRAM_CHAT=$(cat /tmp/tg_chat)
 export GITHUB_TOKEN=$(cat /tmp/gh_token)
 
-chmod +x github-release
-chmod +x telegram
 mkdir -p ~/bin
 wget 'https://storage.googleapis.com/git-repo-downloads/repo' -P ~/bin
 chmod +x ~/bin/repo
