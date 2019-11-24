@@ -30,6 +30,7 @@ function trim_darwin() {
     cat manifest.xml | grep -v darwin  >temp  && cat temp >manifest.xml  && rm temp
     cd ../
 
+# Now Compile
 mkdir "$ROM"
 cd "$ROM"
 
@@ -88,3 +89,4 @@ else
     #telegram -N -M "ALERT: Sync failed in $((SECONDS / 60)) minute(s) and $((SECONDS % 60)) second(s)"
     exit 1
 fi
+#End build
