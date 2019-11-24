@@ -41,11 +41,8 @@ SYNC_START=$(date +"%s")
 #trim_darwin >/dev/null   2>&1
 #repo sync --force-sync --current-branch --no-tags --no-clone-bundle --optimized-fetch --prune -j$(nproc --all) -q 2>&1 >>logwe 2>&1
 repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags #2>&1 >>logwe 2>&1
-if [ -e device/$oem/$device ]; then
+bash ../clone.sh
 
-else
-	bash ../clone.sh
-fi
 SYNC_END=$(date +"%s")
 SYNC_DIFF=$((SYNC_END - SYNC_START))
 if [ -e frameworks/base ]; then
