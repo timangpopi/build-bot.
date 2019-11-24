@@ -12,24 +12,23 @@ git config --global user.name "$GITHUB_USER"
 #export TELEGRAM_CHAT=$(cat /tmp/tg_chat)
 export GITHUB_TOKEN=$(cat /tmp/gh_token)
 
-# Delete useless repos
-trim_manifest() {
+chmod +x github-release
+chmod +x telegram
+mkdir -p ~/bin
+wget 'https://storage.googleapis.com/git-repo-downloads/repo' -P ~/bin
+chmod +x ~/bin/repo
+export PATH=~/bin:$PATH
+export USE_CCACHE=1
+sudo apt-get update
+sudo apt-get install liblz4-dev
+
+function trim_darwin() {
     cd .repo/manifests
-	sed -i -e '/darwin/d' -e '/device\/generic/d' -e '/device\/google/d' default.xml
+    cat default.xml | grep -v darwin  >temp  && cat temp >default.xml  && rm temp
     git commit -a -m "Magic"
     cd ../
-	sed -i -e '/darwin/d' -e '/device\/generic/d' -e '/device\/google/d' manifest.xml
+    cat manifest.xml | grep -v darwin  >temp  && cat temp >manifest.xml  && rm temp
     cd ../
-}
-
-cd /home/ci
-git clone -q "https://$GITHUB_USER:${GITHUB_TOKEN}@github.com/$GITHUB_USER/google-git-cookies.git" &> /dev/null
-if [ -e google-git-cookies ]; then
-    bash google-git-cookies/setup_cookies.sh
-    rm -rf google-git-cookies
-else
-    echo "google-git-cookies repo not found on your account, see steps on README"
-fi
 
 mkdir "$ROM"
 cd "$ROM"
