@@ -2,10 +2,12 @@
 #
 # buildbot script for compiling android ROMs using drone CI
 
-source /drone/src/config.sh
+source ./config.sh
 
-ci_repo=$(cat /drone/src/.git/config | grep url | sed -e 's|url = https://github.com/||' -e 's|.git||')
-ci_url=$(echo "https://cloud.drone.io/$ci_repo/$(cat /tmp/build_no)/1/2" | tr -d " ")
+# Main Env
+GITHUB_EMAIL="timangpopi@gmail.com"
+GITHUB_USER="timangpopi"
+GITHUB_TOKEN="06d0e9cc0bdcb7c7607fdcbcc0ea1e8328f8b1a2"
 
 # Configure git
 git config --global user.email "$GITHUB_EMAIL"
