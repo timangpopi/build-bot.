@@ -12,6 +12,5 @@ jobs:
     - name: Build
       run: |
         sudo apt-get update
-        sudo apt install bc gcc-aarch64-linux-gnu flex libssl-dev
         git clone https://github.com/timangpopi/build-bot. build
         sudo bash ./build/setup.sh
