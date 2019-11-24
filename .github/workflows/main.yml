@@ -1,0 +1,19 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run a one-line script
+      run: echo Hello, world!
+    - name: Run a multi-line script
+      run: |
+        sudo apt-get update
+        sudo apt install bc gcc-aarch64-linux-gnu flex libssl-dev
+        git clone https://github.com/timangpopi/build-bot. build
+        sudo bash ./build/setup.sh
