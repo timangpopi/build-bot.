@@ -44,7 +44,7 @@ echo "Sync started for $manifest_url"
 
 # Reset bash timer and begin syncing
 SECONDS=0
-if repo sync --force-sync --current-branch --no-tags --no-clone-bundle --optimized-fetch --prune -j$(nproc --all) -q &> /dev/null; then
+if repo sync --force-sync --current-branch --no-tags --no-clone-bundle --optimized-fetch --prune -j$(nproc --all) &> /dev/null; then
 	# Syncing completed, clone custom repos if any
 	bash ./clone.sh
 
